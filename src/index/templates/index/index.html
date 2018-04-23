@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<style>
+    * {
+        font-family: Vazir, sans-serif;
+    }
+
+    .card-columns {
+
+    @include media-breakpoint-only(lg) {
+        column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+        column-count: 5;
+    }
+    }
+</style>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Vaziri Font -->
+    <link href="https://cdn.rawgit.com/rastikerdar/vazir-font/v18.0.0/dist/font-face.css" rel="stylesheet"
+          type="text/css"/>
+
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #F7F7F7">
+
+<nav class="navbar navbar-light">
+    <span class="navbar-brand m-4 h1 mx-auto">مباحثه</span>
+</nav>
+
+<ul class="nav justify-content-center bg-teal">
+    <li class="nav-item">
+        <a class="nav-link" href="#">اجتماعی</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">سیاسی</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">فرهنگی</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">اقتصادی</a>
+    </li>
+</ul>
+
+<div class="container-fluid p-1 p-lg-5">
+
+    <div class="row">
+
+        <div class="col-lg-2 col-sm-12 pb-3 d-none d-lg-block">
+
+            <h5 style="text-align: center" class="pb-2">هشتگ های معروف</h5>
+            <div class="list-group pb-5">
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">تلگرام</a>
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">قیمت ارز</a>
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">روحانی</a>
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">حمله یوتیوب</a>
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">ایران</a>
+            </div>
+
+            <h5 style="text-align: center" class="pb-2">نظرهای پر طرفدار</h5>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small>3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
+                        varius blandit.</p>
+                    <small>Donec id elit non mi porta.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small class="text-muted">3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
+                        varius blandit.</p>
+                    <small class="text-muted">Donec id elit non mi porta.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small class="text-muted">3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
+                        varius blandit.</p>
+                    <small class="text-muted">Donec id elit non mi porta.</small>
+                </a>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-10 col-sm-12">
+
+            <h5 style="text-align: right" class="pb-2">بحث های داغ</h5>
+
+
+            <div class="card-columns">
+
+                {% for debate in debates %}
+                    <div class="card">
+                        {% if debate.image %}
+                            <img class="card-img-top"
+                                 src="{{ debate.image }}"
+                                 alt="Card image cap">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: right" dir="rtl">
+                                {{ debate.header }}
+                            </h5>
+                            <p class="card-text" dir="rtl" style="text-align: right">
+                                {#                                {{ debate.body }}#}
+                            </p>
+                            <a href="{% url 'debate' debate.id %}" class="card-link">مشارکت در بحث</a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {##}
+                {#                <div class="card">#}
+                {#                    <img class="card-img-top"#}
+                {#                         src="https://www.usnews.com/dims4/USNEWS/1c3ffdc/2147483647/thumbnail/970x647/quality/85/?url=http%3A%2F%2Fmedia.beam.usnews.com%2Fb7%2F0fbc8c6c19dd2a1ad92ae7075cfd44%2Ftag%3Areuters.com%2C2017%3Anewsml_LYNXMPEDBU0I1%3A12017-12-31T175914Z_1_LYNXMPEDBU0I1_RTROPTP_3_IRAN-NUCLEAR-UN.JPG"#}
+                {#                         alt="Card image cap">#}
+                {#                    <div class="card-body">#}
+                {#                        <h5 class="card-title" style="text-align: right" dir="rtl">نظر شما درباره ی فیلترینگ تلگرام#}
+                {#                            چیست؟</h5>#}
+                {#                        <p class="card-text" dir="rtl" style="text-align: right">#}
+                {#                            با توجه به مسایل اخیر و اینا نظر شما آیا موافقید یا مخالف؟ چرا آره چرا نه؟#}
+                {#                        </p>#}
+                {#                        <a href="#" class="card-link">مشارکت در بحث</a>#}
+                {#                    </div>#}
+                {#                </div>#}
+                {##}
+                {#                <div class="card">#}
+                {#                    <img class="card-img-top"#}
+                {#                         src="https://media.npr.org/assets/img/2018/04/06/ap_17065616815140-5866cc5581fb49eb2a54ea4572e0b62af8f73e76-s800-c85.jpg"#}
+                {#                         alt="Card image cap">#}
+                {#                    <div class="card-body">#}
+                {#                        <h5 class="card-title" style="text-align: right" dir="rtl">نظر شما درباره ی فیلترینگ تلگرام#}
+                {#                            چیست؟</h5>#}
+                {#                        <p class="card-text" dir="rtl" style="text-align: right">#}
+                {#                            با توجه به مسایل اخیر و اینا نظر شما آیا موافقید یا مخالف؟ چرا آره چرا نه؟#}
+                {#                        </p>#}
+                {#                        <a href="#" class="card-link">مشارکت در بحث</a>#}
+                {#                    </div>#}
+                {#                </div>#}
+                {##}
+                {#                <div class="card">#}
+                {#                    <img class="card-img-top"#}
+                {#                         src="https://img.washingtonpost.com/rf/image_1484w/2010-2019/WashingtonPost/2018/04/06/National-Politics/Images/Congress_Sexual_Misconduct_10054-c8e7f.jpg?uuid=eihP3jnoEeiP0kn-PGdaiQ"#}
+                {#                         alt="Card image cap">#}
+                {#                    <div class="card-body">#}
+                {#                        <h5 class="card-title" style="text-align: right" dir="rtl">نظر شما درباره ی فیلترینگ تلگرام#}
+                {#                            چیست؟</h5>#}
+                {#                        <p class="card-text" dir="rtl" style="text-align: right">#}
+                {#                            با توجه به مسایل اخیر و اینا نظر شما آیا موافقید یا مخالف؟ چرا آره چرا نه؟#}
+                {#                        </p>#}
+                {#                        <a href="#" class="card-link">مشارکت در بحث</a>#}
+                {#                    </div>#}
+                {#                </div>#}
+                {##}
+                {#                <div class="card">#}
+                {#                    <img class="card-img-top"#}
+                {#                         src="https://static01.nyt.com/images/2018/04/07/us/politics/07dc-pruitt/07dc-pruitt-master768-v4.jpg"#}
+                {#                         alt="Card image cap">#}
+                {#                    <div class="card-body">#}
+                {#                        <h5 class="card-title" style="text-align: right" dir="rtl">نظر شما درباره ی فیلترینگ تلگرام#}
+                {#                            چیست؟</h5>#}
+                {#                        <p class="card-text" dir="rtl" style="text-align: right">#}
+                {#                            با توجه به مسایل اخیر و اینا نظر شما آیا موافقید یا مخالف؟ چرا آره چرا نه؟#}
+                {#                        </p>#}
+                {#                        <a href="#" class="card-link">مشارکت در بحث</a>#}
+                {#                    </div>#}
+                {#                </div>#}
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

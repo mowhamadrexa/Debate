@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<style>
+    * {
+        font-family: Vazir, sans-serif;
+    }
+
+    .card-columns {
+
+    @include media-breakpoint-only(lg) {
+        column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+        column-count: 5;
+    }
+    }
+</style>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Vaziri Font -->
+    <link href="https://cdn.rawgit.com/rastikerdar/vazir-font/v18.0.0/dist/font-face.css" rel="stylesheet"
+          type="text/css"/>
+
+    <title>Hello, world!</title>
+</head>
+<body style="background-color: #F7F7F7">
+
+<nav class="navbar navbar-light">
+    <span class="navbar-brand m-4 h1 mx-auto">مباحثه</span>
+</nav>
+
+<ul class="nav justify-content-center bg-teal">
+    <li class="nav-item">
+        <a class="nav-link" href="#">اجتماعی</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">سیاسی</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">فرهنگی</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">اقتصادی</a>
+    </li>
+</ul>
+
+<div class="container-fluid p-1 p-md-5 ">
+
+    <div class="row">
+
+        <div class="col-lg-2 col-sm-12 pb-3 d-none d-lg-block">
+
+            <h5 style="text-align: center" class="pb-2">هشتگ های معروف</h5>
+            <div class="list-group pb-5">
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">تلگرام</a>
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">قیمت ارز</a>
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">روحانی</a>
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">حمله یوتیوب</a>
+                <a href="#" class="list-group-item list-group-item-action" style="text-align: center">ایران</a>
+            </div>
+
+            <h5 style="text-align: center" class="pb-2">نظرهای پر طرفدار</h5>
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small>3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
+                        varius blandit.</p>
+                    <small>Donec id elit non mi porta.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small class="text-muted">3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
+                        varius blandit.</p>
+                    <small class="text-muted">Donec id elit non mi porta.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small class="text-muted">3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
+                        varius blandit.</p>
+                    <small class="text-muted">Donec id elit non mi porta.</small>
+                </a>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-10 col-sm-12 ">
+
+            <h4 style="text-align: right;color: #555555; line-height: 30px;" class="pb-2"
+                dir="rtl">{{ debate.header }}</h4>
+            {% if debate.image %}
+                <div class="container-fluid">
+                        <img class="mx-auto rounded img-fluid d-block" style="max-width: 100%; height: auto;"
+                             src="{{ debate.image }}" alt="{{ debate.header }}">
+                </div>
+            {% endif %}
+            <h6 style="text-align: right; color: #555555; line-height: 30px;" class="pb-2 pt-4"
+                dir="rtl">
+                {% autoescape off %}
+                    {{ debate.body }}
+                {% endautoescape %}
+            </h6>
+            <p style="text-align: right; color: #777777; line-height: 30px; font-size: 12px" class="pb-4"
+               dir="rtl">تاریخ ایجاد</p>
+
+            <form action="comment/" method="post" class="pb-4">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="mx-auto" style="width: 100%; text-align: right; color: #555555; line-height: 30px;"
+                           dir="rtl"
+                           for="exampleTextarea">نظر خود
+                        را با دیگران به اشتراک بگذارید</label>
+                    <textarea required dir="rtl" style="text-align: right; line-height: 30px;" class="form-control"
+                              name="comment" id="comment" rows="6"></textarea>
+                    <button type="submit" class="form-control btn btn-light">اشتراک</button>
+                </div>
+            </form>
+
+            {% for comment in comments %}
+                <div class="card mb-2">
+                    <div class="container-fluid">
+                        <div class="row pt-3">
+                            <div class="col-lg-1 col-md-1 col-sm-2 col-3 order-12">
+                                <img class="rounded-circle" style="width: 100%"
+                                     src="http://www.xsjjys.com/data/out/96/WHDQ-512396888.png" alt="User Profile">
+                            </div>
+                            <h5 class="col-lg-11 col-md-11 col-sm-10 col-9 card-title p-2"
+                                style="width:100%;text-align: right; color: #666666; line-height: 30px;">
+                                {% if comment.creator.first_name or comment.creator.last_name %}
+                                    {{ comment.creator.first_name }} {{ comment.creator.last_name }}
+                                {% else %}
+                                    {{ comment.creator.username }}
+                                {% endif %}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="card-body" dir="rtl" style="text-align: right; color: #666666; line-height: 30px;">
+                        {{ comment.body }}
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
